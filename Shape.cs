@@ -1,11 +1,11 @@
 ﻿namespace Snake
 {
-    internal class Circle
+    internal class Shape
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Circle ()
+        public Shape ()
         {
             X = 0;
             Y = 0;

@@ -7,8 +7,8 @@ namespace Snake
 {
     public partial class Canvas : Form
     {
-        private Circle _food = new Circle();
-        private readonly List<Circle> _snake = new List<Circle>();
+        private Shape _food = new Shape();
+        private readonly List<Shape> _snake = new List<Shape>();
 
         public Canvas()
         {
@@ -19,8 +19,6 @@ namespace Snake
             gameTimer.Interval = 1000 / Settings.Speed;
             gameTimer.Tick += UpdateScreen;
             gameTimer.Start();
-
-            StartGame();
         }
 
         private void StartGame()
@@ -29,7 +27,7 @@ namespace Snake
 
             new Settings();
 
-            var head = new Circle { X = 10, Y = 5 };
+            var head = new Shape { X = 10, Y = 5 };
             _snake.Clear();
             _snake.Add(head);
 
@@ -43,7 +41,7 @@ namespace Snake
             var maxYPos = pbCanvas.Size.Height / Settings.Height;
 
             var random = new Random();
-            _food = new Circle {X = random.Next(0, maxXPos), Y = random.Next(0, maxYPos)};
+            _food = new Shape {X = random.Next(0, maxXPos), Y = random.Next(0, maxYPos)};
         }
 
         private void UpdateScreen(object sender, EventArgs e)
@@ -115,8 +113,12 @@ namespace Snake
         private void MovePlayer()
         {
             for (var i = _snake.Count - 1; i >= 0; i--)
+            {
                 if (i == 0)
                 {
+                    var maxXPos = pbCanvas.Size.Width / Settings.Width;
+                    var maxYPos = pbCanvas.Size.Height / Settings.Height;
+
                     switch (Settings.Direction)
                     {
                         case Direction.Right:
@@ -136,15 +138,24 @@ namespace Snake
                             break;
                     }
 
-                    var maxXPos = pbCanvas.Size.Width / Settings.Width;
-                    var maxYPos = pbCanvas.Size.Height / Settings.Height;
-
-                    if (CollideWithBorders(i, maxXPos, maxYPos))
-                        Die();
-
                     for (var j = 1; j < _snake.Count; j++)
                         if (CollideWithBody(i, j))
                             Die();
+
+                    if (_snake[i].X < 0)
+                        _snake[i].X = maxXPos;
+
+                    if (_snake[i].Y < 0)
+                        _snake[i].Y = maxYPos;
+
+                    if (_snake[i].X > maxXPos)
+                        _snake[i].X = 0;
+
+                    if (_snake[i].Y > maxYPos)
+                        _snake[i].Y = 0;
+
+//                    if (CollideWithBorders(i, maxXPos, maxYPos))
+//                        Die();
 
                     if (CollideWithFood())
                         Eat();
@@ -154,6 +165,7 @@ namespace Snake
                     _snake[i].X = _snake[i - 1].X;
                     _snake[i].Y = _snake[i - 1].Y;
                 }
+            }
         }
 
         private bool CollideWithFood()
@@ -188,7 +200,7 @@ namespace Snake
 
         private void Eat()
         {
-            var circle = new Circle
+            var circle = new Shape
             {
                 X = _snake[_snake.Count - 1].X,
                 Y = _snake[_snake.Count - 1].Y
@@ -199,18 +211,27 @@ namespace Snake
             Settings.Score += Settings.Points;
             lblScore.Text = Settings.Score.ToString();
 
-            Settings.Speed++;
             GenerateFood();
         }
 
-        private static void Die()
+        private void Die()
         {
             Settings.GameOver = true;
+            StartGameBtn.Enabled = true;
         }
 
-        private void Canvas_Load(object sender, EventArgs e)
+        private void StartGameBtn_Click(object sender, EventArgs e)
         {
+            StartGameBtn.Enabled = false;
+            PlayerListBox.Enabled = false;
+            pbCanvas.Enabled = true;
+            
+            StartGame();
+        }
 
+        private void ConnectBtn_Click(object sender, EventArgs e)
+        {
+            ConnectBtn.Enabled = false;
         }
     }
 }

@@ -20,8 +20,8 @@
 
         public Settings()
         {
-            Width = 16;
-            Height = 16;
+            Width = 20;
+            Height = 20;
             Speed = 8;
             Score = 0;
             Points = 100;
