@@ -14,7 +14,7 @@
         public static int Height { get; set; }
         public static int Speed { get; set; }
         public static int Score { get; set; }
-        public static int Points { get; set; }
+        public static int FoodValue { get; set; }
         public static bool GameOver { get; set; }
         public static Direction Direction { get; set; }
 
@@ -24,7 +24,7 @@
             Height = 16;
             Speed = 7;
             Score = 0;
-            Points = 100;
+            FoodValue = 100;
             GameOver = false;
             Direction = Direction.Right;
         }
