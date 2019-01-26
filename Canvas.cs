@@ -46,26 +46,20 @@ namespace Snake
 
         private void UpdateScreen(object sender, EventArgs e)
         {
-            if (Settings.GameOver && Input.KeyPressed(Keys.Enter))
-            {
-                StartGame();
-            }
-            else
-            {
-                if (Input.KeyPressed(Keys.Right) && Settings.Direction != Direction.Left)
-                    Settings.Direction = Direction.Right;
 
-                if (Input.KeyPressed(Keys.Left) && Settings.Direction != Direction.Right)
-                    Settings.Direction = Direction.Left;
+            if (Input.KeyPressed(Keys.Right) && Settings.Direction != Direction.Left)
+                Settings.Direction = Direction.Right;
 
-                if (Input.KeyPressed(Keys.Up) && Settings.Direction != Direction.Down)
-                    Settings.Direction = Direction.Up;
+            if (Input.KeyPressed(Keys.Left) && Settings.Direction != Direction.Right)
+                Settings.Direction = Direction.Left;
 
-                if (Input.KeyPressed(Keys.Down) && Settings.Direction != Direction.Up)
-                    Settings.Direction = Direction.Down;
+            if (Input.KeyPressed(Keys.Up) && Settings.Direction != Direction.Down)
+                Settings.Direction = Direction.Up;
 
-                MovePlayer();
-            }
+            if (Input.KeyPressed(Keys.Down) && Settings.Direction != Direction.Up)
+                Settings.Direction = Direction.Down;
+
+            MovePlayer();
 
             pbCanvas.Invalidate();
         }
@@ -86,10 +80,10 @@ namespace Snake
             }
             else
             {
-                var gameOver = "Game over \n" + 
-                               "Your final score is: " + Settings.Score + 
-                               "\nPress Enter to play again.";
+                var gameOver = "Oops! You ate yourself.\n" +
+                               "Your final score is: " + Settings.Score;
 
+                lblGameOver.ForeColor = Color.Red;
                 lblGameOver.Text = gameOver;
                 lblGameOver.Visible = true;
             }
@@ -209,6 +203,7 @@ namespace Snake
             _snake.Add(circle);
 
             Settings.Score += Settings.Points;
+            Settings.Speed += 1;
             lblScore.Text = Settings.Score.ToString();
 
             GenerateFood();
@@ -223,7 +218,8 @@ namespace Snake
         private void StartGameBtn_Click(object sender, EventArgs e)
         {
             StartGameBtn.Enabled = false;
-            PlayerListBox.Enabled = false;
+            PlayersListBox.Enabled = false;
+            PlayerNameTxtBox.Enabled = false;
             pbCanvas.Enabled = true;
             
             StartGame();
@@ -231,6 +227,9 @@ namespace Snake
 
         private void ConnectBtn_Click(object sender, EventArgs e)
         {
+            var player = PlayerNameTxtBox.Text;
+            PlayersListBox.Items.Add(player);
+
             ConnectBtn.Enabled = false;
         }
     }

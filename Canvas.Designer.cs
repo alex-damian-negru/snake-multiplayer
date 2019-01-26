@@ -35,9 +35,10 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.lblGameOver = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.PlayerListBox = new System.Windows.Forms.ListBox();
+            this.PlayersListBox = new System.Windows.Forms.ListBox();
             this.StartGameBtn = new System.Windows.Forms.Button();
             this.ConnectBtn = new System.Windows.Forms.Button();
+            this.PlayerNameTxtBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,18 +58,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(829, 540);
+            this.label1.Location = new System.Drawing.Point(900, 540);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 46);
+            this.label1.Size = new System.Drawing.Size(201, 46);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Score: ";
+            this.label1.Text = "My Score:";
             // 
             // lblScore
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScore.Location = new System.Drawing.Point(1270, 538);
+            this.lblScore.Location = new System.Drawing.Point(1109, 540);
             this.lblScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(0, 46);
@@ -95,25 +96,26 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1213, 16);
+            this.label2.Location = new System.Drawing.Point(1204, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(196, 26);
             this.label2.TabIndex = 5;
             this.label2.Text = "Connected Players";
             // 
-            // PlayerListBox
+            // PlayersListBox
             // 
-            this.PlayerListBox.FormattingEnabled = true;
-            this.PlayerListBox.ItemHeight = 16;
-            this.PlayerListBox.Location = new System.Drawing.Point(1193, 48);
-            this.PlayerListBox.Name = "PlayerListBox";
-            this.PlayerListBox.Size = new System.Drawing.Size(232, 484);
-            this.PlayerListBox.TabIndex = 4;
+            this.PlayersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayersListBox.FormattingEnabled = true;
+            this.PlayersListBox.ItemHeight = 25;
+            this.PlayersListBox.Location = new System.Drawing.Point(1205, 55);
+            this.PlayersListBox.Name = "PlayersListBox";
+            this.PlayersListBox.Size = new System.Drawing.Size(195, 479);
+            this.PlayersListBox.TabIndex = 4;
             // 
             // StartGameBtn
             // 
-            this.StartGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartGameBtn.Location = new System.Drawing.Point(215, 541);
+            this.StartGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartGameBtn.Location = new System.Drawing.Point(17, 540);
             this.StartGameBtn.Name = "StartGameBtn";
             this.StartGameBtn.Size = new System.Drawing.Size(175, 40);
             this.StartGameBtn.TabIndex = 7;
@@ -123,25 +125,34 @@
             // 
             // ConnectBtn
             // 
-            this.ConnectBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConnectBtn.Location = new System.Drawing.Point(17, 541);
+            this.ConnectBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConnectBtn.Location = new System.Drawing.Point(198, 540);
             this.ConnectBtn.Name = "ConnectBtn";
-            this.ConnectBtn.Size = new System.Drawing.Size(192, 41);
+            this.ConnectBtn.Size = new System.Drawing.Size(192, 40);
             this.ConnectBtn.TabIndex = 6;
             this.ConnectBtn.Text = "Connect";
             this.ConnectBtn.UseVisualStyleBackColor = true;
             this.ConnectBtn.Click += new System.EventHandler(this.ConnectBtn_Click);
+            // 
+            // PlayerNameTxtBox
+            // 
+            this.PlayerNameTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayerNameTxtBox.Location = new System.Drawing.Point(396, 546);
+            this.PlayerNameTxtBox.Name = "PlayerNameTxtBox";
+            this.PlayerNameTxtBox.Size = new System.Drawing.Size(302, 30);
+            this.PlayerNameTxtBox.TabIndex = 8;
             // 
             // Canvas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1449, 595);
+            this.ClientSize = new System.Drawing.Size(1433, 595);
+            this.Controls.Add(this.PlayerNameTxtBox);
             this.Controls.Add(this.StartGameBtn);
             this.Controls.Add(this.ConnectBtn);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.PlayerListBox);
+            this.Controls.Add(this.PlayersListBox);
             this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.label1);
@@ -167,9 +178,10 @@
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label lblGameOver;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox PlayerListBox;
+        private System.Windows.Forms.ListBox PlayersListBox;
         private System.Windows.Forms.Button StartGameBtn;
         private System.Windows.Forms.Button ConnectBtn;
+        private System.Windows.Forms.TextBox PlayerNameTxtBox;
     }
 }
 
